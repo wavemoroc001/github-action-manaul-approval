@@ -3,15 +3,23 @@
 name: manual-approve
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
-  echo-job:
+  build:
+    runs-on: ubuntu-latest    
+    steps:
+      - name: deploy
+        run: |
+          echo Deploy APP
+  
+  deploy-job:
+    needs: build
     runs-on: ubuntu-latest
     environment: 'SIT'
 
     steps:
-      - name: Run a multi-line script
+      - name: deploy
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo Deploy APP
